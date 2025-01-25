@@ -1,5 +1,6 @@
 package test3.zad1.models;
 
+import test3.zad1.exceptions.ClothingAlreadyAssignedException;
 import test3.zad1.exceptions.DuplicateClothingException;
 import test3.zad1.exceptions.EmptyClothingAdditionException;
 
@@ -15,13 +16,13 @@ public class Wardrobe implements Iterable<Clothing> {
     }
 
     public void addClothing(Clothing... newClothes) {
-        if (newClothes.length == 0) {
-            throw new EmptyClothingAdditionException();
-        }
+        if (newClothes.length == 0) throw new EmptyClothingAdditionException();
+
         for (Clothing c : newClothes) {
-            if (clothes.contains(c)) {
-                throw new DuplicateClothingException(c);
-            }
+            if (clothes.contains(c)) throw new DuplicateClothingException(c);
+
+            if (c.getWardrobe() != null) throw new ClothingAlreadyAssignedException(c);
+
             c.assignToWardrobe(this);
             clothes.add(c);
         }

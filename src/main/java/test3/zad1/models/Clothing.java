@@ -13,6 +13,14 @@ public abstract class Clothing implements Comparable<Clothing> {
         this.price = price;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Wardrobe getWardrobe() {
+        return wardrobe;
+    }
+
     void assignToWardrobe(Wardrobe wardrobe) {
         this.wardrobe = wardrobe;
     }
